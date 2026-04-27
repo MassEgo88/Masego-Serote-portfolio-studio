@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { generateResumePDF } from "@/lib/generateResume";
 
 const links = [
   { href: "#about", label: "About" },
@@ -38,12 +39,21 @@ export function Nav() {
             </li>
           ))}
         </ul>
-        <a
-          href="mailto:msgpl117@gmail.com"
-          className="hidden sm:inline-flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
-        >
-          Hire me
-        </a>
+        <div className="hidden sm:flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => generateResumePDF()}
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2"
+          >
+            Resume ↓
+          </button>
+          <a
+            href="mailto:msgpl117@gmail.com"
+            className="inline-flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
+          >
+            Hire me
+          </a>
+        </div>
       </nav>
     </header>
   );
