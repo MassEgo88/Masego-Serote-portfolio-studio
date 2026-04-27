@@ -264,6 +264,7 @@ export function generateResumePDF() {
   // ===== CERTIFICATIONS =====
   sectionHeading("Certifications");
   [
+    "Data Analytics — BrightLearn (2026)",
     "Full Stack Web Development — IT Varsity (2025)",
     "Relaxation Massage Certificate — Face to Face Beauty School (2021)",
     "Radio & Voice Over Training — Ndovela Communication (2020)",
