@@ -281,5 +281,31 @@ export function generateResumePDF() {
     doc.text(`${i} / ${pageCount}`, pageW - marginX, pageH - 28, { align: "right" });
   }
 
-  doc.save("Masego-Serote-Data-Analyst-CV.pdf");
+  doc.save(RESUME_FILENAME);
+}
+
+export const RESUME_FILENAME = "Masego-Serote-Data-Analyst-CV.pdf";
+
+export function buildResumeDoc() {
+  // Re-runs the same builder but returns the jsPDF instance instead of saving.
+  // Implemented by calling generateResumePDF logic indirectly is messy; instead
+  // we expose a blob URL builder that wraps generateResumePDF via monkey-save.
+  throw new Error("Use generateResumeBlobUrl() instead");
+}
+
+export function generateResumeBlobUrl(): string {
+  // Temporarily override save to capture the blob.
+  let url = "";
+  const originalSave = (jsPDF.prototype as unknown as { save: typeof jsPDF.prototype.save }).save;
+  (jsPDF.prototype as unknown as { save: (filename?: string) => jsPDF }).save = function () {
+    const blob = (this as unknown as { output: (t: string) => Blob }).output("blob");
+    url = URL.createObjectURL(blob);
+    return this as unknown as jsPDF;
+  };
+  try {
+    generateResumePDF();
+  } finally {
+    (jsPDF.prototype as unknown as { save: typeof originalSave }).save = originalSave;
+  }
+  return url;
 }
