@@ -5,6 +5,7 @@ import { ResumePreviewModal } from "./ResumePreviewModal";
 export function Hero() {
   const [previewOpen, setPreviewOpen] = useState(false);
   return (
+    <>
     <section id="top" className="relative pt-32 pb-24 lg:pt-40 lg:pb-32 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:px-12 grid lg:grid-cols-12 gap-12 items-end">
         <div className="lg:col-span-7 reveal">
