@@ -20,6 +20,7 @@ export function Nav() {
   }, []);
 
   return (
+    <>
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
         scrolled ? "backdrop-blur-md bg-background/70 border-b border-border" : ""
@@ -43,7 +44,7 @@ export function Nav() {
         <div className="hidden sm:flex items-center gap-2">
           <button
             type="button"
-            onClick={() => generateResumePDF()}
+            onClick={() => setPreviewOpen(true)}
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2"
           >
             Resume ↓
@@ -57,5 +58,7 @@ export function Nav() {
         </div>
       </nav>
     </header>
+    <ResumePreviewModal open={previewOpen} onClose={() => setPreviewOpen(false)} />
+    </>
   );
 }
