@@ -85,5 +85,7 @@ export function Hero() {
         </div>
       </div>
     </section>
+    <ResumePreviewModal open={previewOpen} onClose={() => setPreviewOpen(false)} />
+    </>
   );
 }
