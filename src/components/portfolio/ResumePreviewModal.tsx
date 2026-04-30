@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { generateResumeBlobUrl, generateResumePDF } from "@/lib/generateResume";
+import { downloadResumeDocx } from "@/lib/generateResumeDocx";
+import { downloadResumeTxt } from "@/lib/generateResumeTxt";
 
 interface ResumePreviewModalProps {
   open: boolean;
