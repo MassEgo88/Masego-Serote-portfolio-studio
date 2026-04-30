@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { generateResumePDF } from "@/lib/generateResume";
+import { ResumePreviewModal } from "./ResumePreviewModal";
 
 const links = [
   { href: "#about", label: "About" },
