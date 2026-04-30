@@ -40,11 +40,11 @@ export function Hero() {
             </a>
             <button
               type="button"
-              onClick={() => generateResumePDF()}
+              onClick={() => setPreviewOpen(true)}
               className="group inline-flex items-center gap-2 border border-primary/40 text-foreground px-6 py-3 rounded-full text-sm hover:bg-primary hover:text-primary-foreground hover:border-primary transition"
-              aria-label="Download Masego Serote resume as PDF"
+              aria-label="Preview Masego Serote resume"
             >
-              Download Resume
+              Preview Resume
               <span className="transition-transform group-hover:translate-y-0.5">↓</span>
             </button>
           </div>
