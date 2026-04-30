@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { generateResumeBlobUrl, generateResumePDF } from "@/lib/generateResume";
+import { downloadResumeDocx } from "@/lib/generateResumeDocx";
+import { downloadResumeTxt } from "@/lib/generateResumeTxt";
 
 interface ResumePreviewModalProps {
   open: boolean;
@@ -55,13 +57,27 @@ export function ResumePreviewModal({ open, onClose }: ResumePreviewModalProps) {
               Masego Serote — Data Analyst CV
             </h3>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <button
               type="button"
               onClick={() => generateResumePDF()}
               className="inline-flex items-center gap-2 bg-primary text-primary-foreground text-sm px-4 py-2 rounded-full hover:opacity-90 transition"
             >
-              Download ↓
+              PDF ↓
+            </button>
+            <button
+              type="button"
+              onClick={() => downloadResumeDocx()}
+              className="inline-flex items-center gap-2 border border-border text-sm px-4 py-2 rounded-full hover:bg-secondary transition"
+            >
+              DOCX ↓
+            </button>
+            <button
+              type="button"
+              onClick={() => downloadResumeTxt()}
+              className="inline-flex items-center gap-2 border border-border text-sm px-4 py-2 rounded-full hover:bg-secondary transition"
+            >
+              TXT ↓
             </button>
             <button
               type="button"
