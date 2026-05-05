@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import { generateResumeBlobUrl, generateResumePDF } from "@/lib/generateResume";
+import { generateResumePDF } from "@/lib/generateResume";
 import { downloadResumeDocx } from "@/lib/generateResumeDocx";
 import { downloadResumeTxt } from "@/lib/generateResumeTxt";
-import {
-  generateCoverLetterBlobUrl,
-  generateCoverLetterPDF,
-} from "@/lib/generateCoverLetter";
+import { generateCoverLetterPDF } from "@/lib/generateCoverLetter";
 import { downloadCoverLetterDocx } from "@/lib/generateCoverLetterDocx";
 import { downloadCoverLetterTxt } from "@/lib/generateCoverLetterTxt";
+import { resume } from "@/lib/resumeData";
+import { coverLetter } from "@/lib/coverLetterData";
 
 interface ResumePreviewModalProps {
   open: boolean;
@@ -18,18 +17,6 @@ type DocTab = "resume" | "cover";
 
 export function ResumePreviewModal({ open, onClose }: ResumePreviewModalProps) {
   const [tab, setTab] = useState<DocTab>("resume");
-  const [url, setUrl] = useState<string>("");
-
-  useEffect(() => {
-    if (!open) return;
-    const blobUrl =
-      tab === "resume" ? generateResumeBlobUrl() : generateCoverLetterBlobUrl();
-    setUrl(blobUrl);
-    return () => {
-      if (blobUrl) URL.revokeObjectURL(blobUrl);
-      setUrl("");
-    };
-  }, [open, tab]);
 
   useEffect(() => {
     if (!open) return;
@@ -138,20 +125,131 @@ export function ResumePreviewModal({ open, onClose }: ResumePreviewModalProps) {
           })}
         </div>
 
-        <div className="flex-1 bg-muted">
-          {url ? (
-            <iframe
-              src={`${url}#view=FitH`}
-              title={`${tab} PDF preview`}
-              className="w-full h-full border-0"
-            />
-          ) : (
-            <div className="h-full flex items-center justify-center text-sm text-muted-foreground">
-              Generating preview…
-            </div>
-          )}
+        <div className="flex-1 overflow-auto bg-muted p-4 sm:p-8">
+          <div className="mx-auto max-w-3xl bg-white text-black rounded-sm shadow-md p-8 sm:p-12 font-sans text-[13px] leading-relaxed">
+            {isResume ? <ResumeBody /> : <CoverLetterBody />}
+          </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function SectionHeading({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 className="mt-6 mb-2 text-[12px] font-bold uppercase tracking-[0.12em] border-b border-gray-300 pb-1">
+      {children}
+    </h2>
+  );
+}
+
+function ResumeBody() {
+  return (
+    <div>
+      <h1 className="text-2xl font-bold leading-tight">{resume.name}</h1>
+      <p className="text-sm font-medium">{resume.title}</p>
+      <p className="text-[12px] text-gray-700 mt-1">{resume.location}</p>
+      <p className="text-[12px] text-gray-700">
+        Email: {resume.email} | Phone: {resume.phone}
+      </p>
+      <p className="text-[12px] text-gray-700 break-all">LinkedIn: {resume.linkedin}</p>
+      <p className="text-[12px] text-gray-700 break-all">GitHub: {resume.github}</p>
+
+      <SectionHeading>Summary</SectionHeading>
+      <p>{resume.summary}</p>
+
+      <SectionHeading>Skills</SectionHeading>
+      <ul className="space-y-1">
+        {resume.skills.map((s) => (
+          <li key={s.group}>
+            <span className="font-semibold">{s.group}:</span> {s.items}
+          </li>
+        ))}
+      </ul>
+
+      <SectionHeading>Professional Experience</SectionHeading>
+      {resume.experience.map((r) => (
+        <div key={`${r.title}-${r.org}`} className="mb-3">
+          <p className="font-semibold">
+            {r.title}, {r.org} — {r.location}
+          </p>
+          <p className="text-[12px] text-gray-600 italic">{r.period}</p>
+          <ul className="list-disc pl-5 mt-1 space-y-0.5">
+            {r.bullets.map((b, i) => (
+              <li key={i}>{b}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+
+      <SectionHeading>Projects</SectionHeading>
+      {resume.projects.map((p) => (
+        <div key={p.title} className="mb-3">
+          <p className="font-semibold">{p.title}</p>
+          <p className="text-[12px] text-gray-600">
+            Tools: {p.tools} · <span className="break-all">{p.url}</span>
+          </p>
+          <ul className="list-disc pl-5 mt-1 space-y-0.5">
+            {p.bullets.map((b, i) => (
+              <li key={i}>{b}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+
+      <SectionHeading>Education</SectionHeading>
+      <ul className="space-y-0.5">
+        {resume.education.map((e) => (
+          <li key={e}>{e}</li>
+        ))}
+      </ul>
+
+      <SectionHeading>Certifications</SectionHeading>
+      <ul className="list-disc pl-5 space-y-0.5">
+        {resume.certifications.map((c) => (
+          <li key={c}>{c}</li>
+        ))}
+      </ul>
+
+      <SectionHeading>Languages</SectionHeading>
+      <p>{resume.languages}</p>
+    </div>
+  );
+}
+
+function CoverLetterBody() {
+  return (
+    <div>
+      <h1 className="text-2xl font-bold leading-tight">{coverLetter.name}</h1>
+      <p className="text-sm font-medium">{coverLetter.title}</p>
+      <p className="text-[12px] text-gray-700 mt-1">{coverLetter.location}</p>
+      <p className="text-[12px] text-gray-700">
+        Email: {coverLetter.email} | Phone: {coverLetter.phone}
+      </p>
+      <p className="text-[12px] text-gray-700 break-all">
+        LinkedIn: {coverLetter.linkedin}
+      </p>
+      <p className="text-[12px] text-gray-700 break-all">GitHub: {coverLetter.github}</p>
+
+      <p className="mt-6">{coverLetter.date}</p>
+
+      <div className="mt-4">
+        <p>{coverLetter.recipient.name}</p>
+        <p>{coverLetter.recipient.company}</p>
+        <p>{coverLetter.recipient.address}</p>
+      </div>
+
+      <p className="mt-4 font-semibold">Subject: {coverLetter.subject}</p>
+      <p className="mt-4">{coverLetter.greeting}</p>
+
+      <div className="mt-4 space-y-3">
+        {coverLetter.paragraphs.map((p, i) => (
+          <p key={i}>{p}</p>
+        ))}
+      </div>
+
+      <p className="mt-6">{coverLetter.closing}</p>
+      <p className="mt-6 font-semibold">{coverLetter.name}</p>
     </div>
   );
 }
