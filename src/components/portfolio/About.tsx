@@ -12,7 +12,7 @@ export function About() {
         </div>
         <div className="lg:col-span-7 lg:col-start-6 space-y-6 text-lg text-muted-foreground leading-relaxed">
           <p>
-            I'm an aspiring Data Analyst with hands-on experience in data cleaning,
+            I'm a Data Analyst with hands-on experience in data cleaning,
             analysis and visualization. My background in administration taught me the
             discipline of clean records — analytics gave me the tools to turn them
             into <span className="text-foreground">actionable insights</span>.

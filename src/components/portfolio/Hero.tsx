@@ -21,7 +21,7 @@ export function Hero() {
             move business.
           </h1>
           <p className="mt-8 max-w-xl text-lg text-muted-foreground leading-relaxed">
-            I'm <span className="text-foreground">Masego Serote</span> — an aspiring data
+            I'm <span className="text-foreground">Masego Serote</span> — a data
             analyst building dashboards, cleaning messy datasets, and uncovering the
             stories behind the numbers with SQL, Excel and modern BI tools.
           </p>
