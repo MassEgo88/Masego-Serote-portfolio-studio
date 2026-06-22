@@ -8,6 +8,7 @@ import { Projects } from "@/components/portfolio/Projects";
 import { Experience } from "@/components/portfolio/Experience";
 import { Approach } from "@/components/portfolio/Approach";
 import { Contact, Footer } from "@/components/portfolio/Contact";
+import { WhatsAppFloat } from "@/components/portfolio/WhatsAppFloat";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -43,6 +44,7 @@ function Index() {
       <Approach />
       <Contact />
       <Footer />
+      <WhatsAppFloat />
     </main>
   );
 }
