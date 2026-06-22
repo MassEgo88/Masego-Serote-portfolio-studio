@@ -11,5 +11,5 @@ export const contactConfig = {
   github: "https://github.com/MassEgo88",
 } as const;
 
-export const whatsappUrl = (message = contactConfig.whatsappDefaultMessage) =>
+export const whatsappUrl = (message: string = contactConfig.whatsappDefaultMessage) =>
   `https://wa.me/${contactConfig.whatsappNumber}?text=${encodeURIComponent(message)}`;
