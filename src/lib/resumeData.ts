@@ -13,7 +13,7 @@ export const resume = {
   github: "https://github.com/MassEgo88",
 
   summary:
-    "Data Analyst with hands-on experience in data cleaning, analysis, and visualisation using SQL, Excel, Power BI, Looker Studio, and Python. Proven ability to transform raw data into clear, decision-ready insights through three end-to-end case studies covering streaming consumption, retail sales, and vehicle pricing. Strong administrative background with high attention to detail, data accuracy, and reporting.",
+    "Detail-oriented Data Analyst skilled in SQL, Excel, Power BI, Looker Studio, and Python, with a track record of turning raw, messy datasets into clear, decision-ready insights. Delivered three end-to-end analytics case studies across streaming consumption, retail sales, and vehicle pricing — from data cleaning and modelling through to dashboards and stakeholder-ready recommendations. Combines a disciplined administrative background with strong data accuracy, KPI reporting, and a commercial mindset focused on measurable business impact.",
 
   skills: [
     {
