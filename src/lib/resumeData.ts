@@ -78,6 +78,17 @@ export const resume = {
 
   projects: [
     {
+      title: "Data Warehouse Pipeline - Bronze to Gold with EDA",
+      tools: "SQL, Python, Data Warehouse",
+      url: "https://github.com/MassEgo88",
+      bullets: [
+        "Designed and implemented a multi-layer data warehouse pipeline (bronze, silver, gold) to transform raw data into analysis-ready datasets.",
+        "Performed exploratory data analysis (EDA) at each layer to validate data quality, identify anomalies, and ensure downstream reliability.",
+        "Applied data cleansing, type casting, deduplication, and business-rule validation in the silver layer to standardise ingested data.",
+        "Delivered curated gold-layer tables optimised for BI reporting, dashboarding, and stakeholder analytics.",
+      ],
+    },
+    {
       title: "Bright TV - Consumption Analysis and Growth Strategy",
       tools: "SQL, Dashboards",
       url: "https://github.com/MassEgo88/Bright-TV-Case-Study",
