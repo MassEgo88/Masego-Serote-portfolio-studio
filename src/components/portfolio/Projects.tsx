@@ -1,6 +1,19 @@
 const projects = [
   {
     n: "01",
+    title: "Data Warehouse Pipeline — Bronze to Gold with EDA",
+    tag: "SQL · Python · Data Warehouse · EDA",
+    summary:
+      "Built an end-to-end data warehouse pipeline implementing bronze (raw ingestion), silver (cleansed/transformed), and gold (analysis-ready) layers. Performed exploratory data analysis at each stage to validate quality and produce insights-ready datasets.",
+    metrics: [
+      { k: "Bronze → Silver → Gold", v: "3 Layers" },
+      { k: "EDA + Quality", v: "Validated" },
+      { k: "BI-Ready", v: "Gold Tables" },
+    ],
+    link: "https://github.com/MassEgo88",
+  },
+  {
+    n: "02",
     title: "Bright TV — Consumption Analysis & Growth Strategy",
     tag: "SQL · Dashboards · Retention",
     summary:
@@ -13,7 +26,7 @@ const projects = [
     link: "https://github.com/MassEgo88/Bright-TV-Case-Study",
   },
   {
-    n: "02",
+    n: "03",
     title: "Bright Coffee Shop — Sales & Customer Insights",
     tag: "SQL · Excel · Behavioural Analysis",
     summary:
@@ -26,7 +39,7 @@ const projects = [
     link: "https://github.com/MassEgo88",
   },
   {
-    n: "03",
+    n: "04",
     title: "Bright Car Sales — Vehicle Sales Data Analysis",
     tag: "Data Cleaning · Pricing · Demand",
     summary:
